@@ -28,7 +28,8 @@ export default async function Home() {
         {/* HEADER */}
         <header style={{
           textAlign: "center",
-          padding: "55px 0 28px"
+          padding: "70px 0 40px",
+          borderBottom: "1px solid #222"
         }}>
           <h1 style={{
             fontFamily: "Georgia, serif",
@@ -49,42 +50,55 @@ export default async function Home() {
 
         {/* NAV */}
         <div style={{
-          borderTop: "1px solid #333",
           borderBottom: "1px solid #333",
           padding: "16px 0",
           textAlign: "center"
         }}>
-          <Link href="/" style={{ ...navStyle, color: "#d4af37" }}>
+          <Link href="/" className="nav-link" style={{ ...navStyle, color: "#d4af37" }}>
             HOME
           </Link>
-          <Link href="/category/notes" style={navStyle}>NOTES</Link>
-          <Link href="/category/trading" style={navStyle}>TRADING</Link>
-          <Link href="/category/business" style={navStyle}>BUSINESS</Link>
-          <Link href="/category/family" style={navStyle}>FAMILY</Link>
+
+          <Link href="/category/notes" className="nav-link" style={navStyle}>
+            NOTES
+          </Link>
+
+          <Link href="/category/trading" className="nav-link" style={navStyle}>
+            TRADING
+          </Link>
+
+          <Link href="/category/business" className="nav-link" style={navStyle}>
+            BUSINESS
+          </Link>
+
+          <Link href="/category/family" className="nav-link" style={navStyle}>
+            FAMILY
+          </Link>
         </div>
 
         {/* CONTENT */}
         <section className="home-layout" style={{
-  display: "grid",
-  gridTemplateColumns: "2fr 1fr",
-  gap: "34px",
-  marginTop: "38px"
-}}>
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr",
+          gap: "34px",
+          marginTop: "38px"
+        }}>
 
           {/* LEFT - POSTS */}
           <div>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <Link
                 key={post.slug.current}
-                href={`/${post.slug.current}`}   // ✅ 핵심: 상세 페이지로 이동
+                href={`/${post.slug.current}`}
+                className="post-card fade-in"
                 style={{
                   display: "block",
                   textDecoration: "none",
                   color: "inherit",
-                  border: "1px solid #303030",
-                  marginBottom: "28px",
-                  background: "#141414",
-                  transition: "transform 0.25s ease, border-color 0.25s ease"
+                  border: "1px solid #2b2b2b",
+                  marginBottom: "34px",
+                  background: "linear-gradient(180deg, #171717 0%, #101010 100%)",
+                  overflow: "hidden",
+                  boxShadow: "0 18px 45px rgba(0,0,0,0.35)"
                 }}
               >
                 {post.mainImage?.asset?.url && (
