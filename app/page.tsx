@@ -1,6 +1,9 @@
 import Link from "next/link"
 import { client } from "../lib/sanity"
 
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
 export default async function Home() {
   const posts = await client.fetch(`*[_type == "post"] | order(publishedAt desc){
     title,
@@ -24,8 +27,6 @@ export default async function Home() {
         margin: "0 auto",
         padding: "28px"
       }}>
-
-        {/* HEADER */}
         <header style={{
           textAlign: "center",
           padding: "70px 0 40px",
@@ -48,44 +49,26 @@ export default async function Home() {
           </p>
         </header>
 
-        {/* NAV */}
         <div style={{
           borderBottom: "1px solid #333",
           padding: "16px 0",
           textAlign: "center"
         }}>
-          <Link href="/" className="nav-link" style={{ ...navStyle, color: "#d4af37" }}>
-            HOME
-          </Link>
-
-          <Link href="/category/notes" className="nav-link" style={navStyle}>
-            NOTES
-          </Link>
-
-          <Link href="/category/trading" className="nav-link" style={navStyle}>
-            TRADING
-          </Link>
-
-          <Link href="/category/business" className="nav-link" style={navStyle}>
-            BUSINESS
-          </Link>
-
-          <Link href="/category/family" className="nav-link" style={navStyle}>
-            FAMILY
-          </Link>
+          <Link href="/" className="nav-link" style={{ ...navStyle, color: "#d4af37" }}>HOME</Link>
+          <Link href="/category/notes" className="nav-link" style={navStyle}>NOTES</Link>
+          <Link href="/category/trading" className="nav-link" style={navStyle}>TRADING</Link>
+          <Link href="/category/business" className="nav-link" style={navStyle}>BUSINESS</Link>
+          <Link href="/category/family" className="nav-link" style={navStyle}>FAMILY</Link>
         </div>
 
-        {/* CONTENT */}
         <section className="home-layout" style={{
           display: "grid",
           gridTemplateColumns: "2fr 1fr",
           gap: "34px",
           marginTop: "38px"
         }}>
-
-          {/* LEFT - POSTS */}
           <div>
-            {posts.map((post, index) => (
+            {posts.map((post) => (
               <Link
                 key={post.slug.current}
                 href={`/${post.slug.current}`}
@@ -155,7 +138,6 @@ export default async function Home() {
             ))}
           </div>
 
-          {/* RIGHT - SIDEBAR */}
           <aside style={{
             border: "1px solid #303030",
             background: "#141414",
@@ -200,7 +182,6 @@ export default async function Home() {
           </aside>
         </section>
 
-        {/* FOOTER */}
         <footer style={{
           textAlign: "center",
           color: "#666",

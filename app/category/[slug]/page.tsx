@@ -1,6 +1,9 @@
 import Link from "next/link"
 import { client } from "../../../lib/sanity"
 
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
 export default async function CategoryPage({ params }) {
   const { slug } = await params
 
@@ -31,7 +34,6 @@ export default async function CategoryPage({ params }) {
         margin: "0 auto",
         padding: "28px"
       }}>
-
         <header style={{
           textAlign: "center",
           padding: "48px 0 26px"
@@ -59,30 +61,30 @@ export default async function CategoryPage({ params }) {
           padding: "16px 0",
           textAlign: "center"
         }}>
-          <Link href="/" style={navStyle}>HOME</Link>
+          <Link href="/" className="nav-link" style={navStyle}>HOME</Link>
 
-          <Link href="/category/notes" style={{
+          <Link href="/category/notes" className="nav-link" style={{
             ...navStyle,
             color: slug === "notes" ? "#d4af37" : "#ccc"
           }}>
             NOTES
           </Link>
 
-          <Link href="/category/trading" style={{
+          <Link href="/category/trading" className="nav-link" style={{
             ...navStyle,
             color: slug === "trading" ? "#d4af37" : "#ccc"
           }}>
             TRADING
           </Link>
 
-          <Link href="/category/business" style={{
+          <Link href="/category/business" className="nav-link" style={{
             ...navStyle,
             color: slug === "business" ? "#d4af37" : "#ccc"
           }}>
             BUSINESS
           </Link>
 
-          <Link href="/category/family" style={{
+          <Link href="/category/family" className="nav-link" style={{
             ...navStyle,
             color: slug === "family" ? "#d4af37" : "#ccc"
           }}>
@@ -106,13 +108,14 @@ export default async function CategoryPage({ params }) {
             <Link
               key={post.slug.current}
               href={`/${post.slug.current}`}
+              className="post-card fade-in"
               style={{
                 display: "block",
                 textDecoration: "none",
                 color: "inherit",
                 border: "1px solid #303030",
                 background: "#141414",
-                transition: "transform 0.25s ease, border-color 0.25s ease"
+                overflow: "hidden"
               }}
             >
               {post.mainImage?.asset?.url && (
