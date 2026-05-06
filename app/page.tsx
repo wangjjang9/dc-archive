@@ -50,10 +50,14 @@ export default async function Home() {
         </header>
 
         <div style={{
-          borderBottom: "1px solid #333",
-          padding: "16px 0",
-          textAlign: "center"
-        }}>
+  borderBottom: "1px solid #333",
+  padding: "16px 0",
+  textAlign: "center",
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  gap: "10px"
+}}>
           <Link href="/" className="nav-link" style={{ ...navStyle, color: "#d4af37" }}>HOME</Link>
           <Link href="/category/notes" className="nav-link" style={navStyle}>NOTES</Link>
           <Link href="/category/trading" className="nav-link" style={navStyle}>TRADING</Link>
@@ -198,6 +202,6 @@ export default async function Home() {
 const navStyle = {
   color: "#ccc",
   fontSize: "13px",
-  margin: "0 14px",
+  margin: "0 8px",
   textDecoration: "none"
 }
